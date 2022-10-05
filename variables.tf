@@ -1,3 +1,7 @@
+variable "environment" {
+  type = string
+
+}
 variable "uniqueName" {
   type        = string
   description = "(optional) describe your variable"

@@ -27,7 +27,7 @@ provider "kubernetes" {
 
 module "eks" {
   source  = "terraform-aws-modules/eks/aws"
-  version = "18.27.1"
+  version = "18.30.0"
 
   cluster_name    = var.uniqueName
   cluster_version = "1.23"
@@ -173,8 +173,8 @@ module "eks" {
 }
 
 module "vpc_cni_irsa" {
-  source = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks"
-
+  source                = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks"
+  version               = "5.5.0"
   role_name             = "${var.uniqueName}_vpc_cni"
   attach_vpc_cni_policy = true
   vpc_cni_enable_ipv4   = true
@@ -187,7 +187,7 @@ module "vpc_cni_irsa" {
   }
 
   tags = {
-    Environment = "dev"
+    Environment = var.environment
     Terraform   = "true"
   }
 }
