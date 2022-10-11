@@ -22,7 +22,7 @@ variable "aws_admin_arn" {
 
 variable "eks_general_instance_type" {
   type    = list(any)
-  default = ["c5.xlarge"]
+  default = ["c6i.xlarge"]
 }
 
 variable "eks_general_min_size" {
