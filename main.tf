@@ -110,6 +110,7 @@ module "eks" {
 
     }
   }
+  enable_irsa = true
   cluster_security_group_additional_rules = {
     egress_nodes_ephemeral_ports_tcp = {
       description                = "To node 1025-65535"
