@@ -54,7 +54,7 @@ module "eks" {
 
   vpc_id     = var.vpc_id
   subnet_ids = var.vpc_public_subnets
-
+  cluster_ip_family = "ipv6"
   eks_managed_node_group_defaults = {
     # We are using the IRSA created below for permissions
     # However, we have to provision a new cluster with the policy attached FIRST
