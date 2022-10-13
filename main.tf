@@ -52,8 +52,9 @@ module "eks" {
     }
   }
 
-  vpc_id                     = var.vpc_id
-  subnet_ids                 = var.vpc_public_subnets
+  vpc_id              = var.vpc_id
+  subnet_ids          = var.vpc_public_subnets
+  vpc_cni_enable_ipv6 = true #ipv4 and ipv6 is mutually exclusive
   # cluster_ip_family          = "ipv6"
   # create_cni_ipv6_iam_policy = true
 
