@@ -179,6 +179,7 @@ module "vpc_cni_irsa" {
   role_name             = "${var.uniqueName}_vpc_cni"
   attach_vpc_cni_policy = true
   vpc_cni_enable_ipv6   = true
+  create_cni_ipv6_iam_policy = true
   oidc_providers = {
     main = {
       provider_arn               = module.eks.oidc_provider_arn
