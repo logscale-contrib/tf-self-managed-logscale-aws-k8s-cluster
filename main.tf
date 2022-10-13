@@ -54,8 +54,8 @@ module "eks" {
 
   vpc_id                     = var.vpc_id
   subnet_ids                 = var.vpc_public_subnets
-  cluster_ip_family          = "ipv6"
-  create_cni_ipv6_iam_policy = true
+  # cluster_ip_family          = "ipv6"
+  # create_cni_ipv6_iam_policy = true
 
   eks_managed_node_group_defaults = {
     # We are using the IRSA created below for permissions
@@ -180,7 +180,7 @@ module "vpc_cni_irsa" {
   version               = "5.5.0"
   role_name             = "${var.uniqueName}_vpc_cni"
   attach_vpc_cni_policy = true
-  vpc_cni_enable_ipv6   = true
+  # vpc_cni_enable_ipv6   = true
   oidc_providers = {
     main = {
       provider_arn               = module.eks.oidc_provider_arn
