@@ -134,7 +134,7 @@ module "eks" {
       type                          = "ingress"
       source_cluster_security_group = true
     }
-    ingress_allow_access_from_control_plane = {
+    ingress_allow_access_from_control_plane_alb = {
       type                          = "ingress"
       protocol                      = "tcp"
       from_port                     = 9443
@@ -142,7 +142,7 @@ module "eks" {
       source_cluster_security_group = true
       description                   = "Allow access from control plane to webhook port of AWS load balancer controller"
     }
-    ingress_allow_access_from_control_plane = {
+    ingress_allow_access_from_control_plane_tap = {
       type                          = "ingress"
       protocol                      = "tcp"
       from_port                     = 8089
