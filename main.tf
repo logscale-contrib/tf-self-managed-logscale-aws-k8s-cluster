@@ -177,10 +177,7 @@ module "eks" {
     "aws-alb"                                  = true
   }
   create_cluster_primary_security_group_tags = false
-  tags = {
-    Environment = "dev"
-    Terraform   = "true"
-  }
+ 
 }
 
 module "vpc_cni_irsa" {
@@ -200,8 +197,4 @@ module "vpc_cni_irsa" {
     }
   }
 
-  tags = {
-    Environment = var.environment
-    Terraform   = "true"
-  }
 }
