@@ -31,5 +31,5 @@ variable "eks_general_max_size" {
 }
 variable "eks_general_desired_size" {
   type    = number
-  default = 3
+  default = 2
 }
