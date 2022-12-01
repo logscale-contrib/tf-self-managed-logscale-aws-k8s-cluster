@@ -27,10 +27,10 @@ provider "kubernetes" {
 
 module "eks" {
   source  = "terraform-aws-modules/eks/aws"
-  version = "18.30.0"
+  version = "18.31.2"
 
   cluster_name    = var.uniqueName
-  cluster_version = "1.23"
+  cluster_version = "1.24"
 
   cloudwatch_log_group_retention_in_days = 7
   cluster_enabled_log_types              = ["audit", "api", "authenticator", "controllerManager", "scheduler"]
