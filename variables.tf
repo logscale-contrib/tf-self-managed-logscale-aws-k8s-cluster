@@ -10,6 +10,9 @@ variable "vpc_id" {
 variable "vpc_public_subnets" {
   type = list(string)
 }
+variable "vpc_private_subnets" {
+  type = list(string)
+}
 
 variable "aws_admin_arn" {
   type        = string

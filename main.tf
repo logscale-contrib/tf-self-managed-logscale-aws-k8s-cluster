@@ -107,6 +107,7 @@ module "eks" {
       selectors = [
         { namespace = "kube-system" }
       ]
+      subnet_ids = var.vpc_private_subnets
     }
 
     karpenter = {
@@ -114,6 +115,7 @@ module "eks" {
       selectors = [
         { namespace = "karpenter" }
       ]
+      subnet_ids = var.vpc_private_subnets
     }
   }
 
