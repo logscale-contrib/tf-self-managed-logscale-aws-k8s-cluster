@@ -113,30 +113,30 @@ module "eks" {
     }
   }
 
-  eks_managed_node_groups = {
-    karpenter = {
-      instance_types = var.eks_general_instance_type
+  # eks_managed_node_groups = {
+  #   karpenter = {
+  #     instance_types = var.eks_general_instance_type
 
-      min_size     = var.eks_general_min_size
-      max_size     = var.eks_general_max_size
-      desired_size = var.eks_general_desired_size
+  #     min_size     = var.eks_general_min_size
+  #     max_size     = var.eks_general_max_size
+  #     desired_size = var.eks_general_desired_size
 
-      labels = {
-        "beta.crowdstrike.com/pool" = "system"
-      }
+  #     labels = {
+  #       "beta.crowdstrike.com/pool" = "system"
+  #     }
 
-      # labels = var.tags
-      iam_role_additional_policies = [
-        # Required by Karpenter
-        "arn:${data.aws_partition.current.partition}:iam::aws:policy/AmazonSSMManagedInstanceCore"
-      ]
-      tags = {
-        # This will tag the launch template created for use by Karpenter
-        "karpenter.sh/discovery" = var.uniqueName
-      }
+  #     # labels = var.tags
+  #     iam_role_additional_policies = [
+  #       # Required by Karpenter
+  #       "arn:${data.aws_partition.current.partition}:iam::aws:policy/AmazonSSMManagedInstanceCore"
+  #     ]
+  #     tags = {
+  #       # This will tag the launch template created for use by Karpenter
+  #       "karpenter.sh/discovery" = var.uniqueName
+  #     }
 
-    }
-  }
+  #   }
+  # }
   enable_irsa = true
   cluster_security_group_additional_rules = {
     egress_nodes_ephemeral_ports_tcp = {
