@@ -68,7 +68,8 @@ module "eks" {
 
   # create_aws_auth_configmap = true
   manage_aws_auth_configmap = true
-  aws_auth_users = [
+  aws_auth_roles = [
+    # We need to add in the Karpenter node IAM role for nodes launched by Karpenter
     {
       rolearn  = module.karpenter.role_arn
       username = "system:node:{{EC2PrivateDNSName}}"
@@ -77,6 +78,9 @@ module "eks" {
         "system:nodes",
       ]
     },
+  ]
+
+  aws_auth_users = [
     {
       userarn  = data.aws_caller_identity.current.arn
       username = "admin-caller"
