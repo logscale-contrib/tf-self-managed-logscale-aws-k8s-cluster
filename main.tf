@@ -55,17 +55,6 @@ resource "aws_kms_alias" "eks" {
   target_key_id = aws_kms_key.eks.key_id
 }
 
-provider "kubernetes" {
-  host                   = module.eks.cluster_endpoint
-  cluster_ca_certificate = base64decode(module.eks.cluster_certificate_authority_data)
-
-  exec {
-    api_version = "client.authentication.k8s.io/v1"
-    command     = "aws"
-    # This requires the awscli to be installed locally where Terraform is executed
-    args = ["eks", "get-token", "--cluster-name", module.eks.cluster_id]
-  }
-}
 
 module "eks" {
   source = "terraform-aws-modules/eks/aws"
