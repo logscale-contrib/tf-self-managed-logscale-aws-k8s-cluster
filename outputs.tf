@@ -14,9 +14,9 @@ output "eks_cluster_oidc_issuer_url" {
   value = module.eks.cluster_oidc_issuer_url
 }
 
-output "eks_karpenter_iam_role_name" {
-  value = module.eks.eks_managed_node_groups["karpenter"].iam_role_name
-}
-output "eks_karpenter_iam_role_arn" {
-  value = module.eks.eks_managed_node_groups["karpenter"].iam_role_arn
-}
+# output "eks_karpenter_iam_role_name" {
+#   value = module.eks.eks_managed_node_groups["karpenter"].iam_role_name
+# }
+# output "eks_karpenter_iam_role_arn" {
+#   value = module.eks.eks_managed_node_groups["karpenter"].iam_role_arn
+# }
