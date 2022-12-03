@@ -133,6 +133,21 @@ module "eks" {
   ]
 
   fargate_profiles = {
+    alb-manager = {
+      name = "alb-manager"
+      selectors = [
+        { namespace = "alb-manager" }
+      ]
+      subnet_ids = var.vpc_private_subnets
+    }
+    external-dns = {
+      name = "external-dns"
+      selectors = [
+        { namespace = "external-dns" }
+      ]
+      subnet_ids = var.vpc_private_subnets
+    }
+
     kube_system = {
       name = "kube-system"
       selectors = [
