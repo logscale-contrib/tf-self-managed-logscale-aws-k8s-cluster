@@ -140,6 +140,13 @@ module "eks" {
       ]
       subnet_ids = var.vpc_private_subnets
     }
+    cert-manager = {
+      name = "cert-manager"
+      selectors = [
+        { namespace = "cert-manager" }
+      ]
+      subnet_ids = var.vpc_private_subnets
+    }    
     external-dns = {
       name = "external-dns"
       selectors = [
