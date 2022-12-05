@@ -19,7 +19,8 @@ resource "helm_release" "alb-manager" {
   depends_on = [
     module.eks,
     module.cert_manager_irsa,
-    helm_release.promcrds
+    helm_release.promcrds,
+    helm_release.cert-manager
   ]
   namespace        = "alb-manager"
   create_namespace = true
