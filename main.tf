@@ -170,6 +170,28 @@ module "eks" {
       ]
       subnet_ids = var.vpc_private_subnets
     }
+    logscale-operator = {
+      name = "logscale-operator"
+      selectors = [
+        { namespace = "logscale-operator" }
+      ]
+      subnet_ids = var.vpc_private_subnets
+    }
+        
+    otel-operator = {
+      name = "otel-operator"
+      selectors = [
+        { namespace = "otel-operator" }
+      ]
+      subnet_ids = var.vpc_private_subnets
+    }
+    strimzi-operator = {
+      name = "strimzi-operator"
+      selectors = [
+        { namespace = "strimzi-operator" }
+      ]
+      subnet_ids = var.vpc_private_subnets
+    }
   }
 
   # eks_managed_node_groups = {
