@@ -146,7 +146,7 @@ module "eks" {
         { namespace = "cert-manager" }
       ]
       subnet_ids = var.vpc_private_subnets
-    }    
+    }
     external-dns = {
       name = "external-dns"
       selectors = [
@@ -290,6 +290,20 @@ resource "helm_release" "karpenter" {
   repository = "oci://public.ecr.aws/karpenter"
   chart      = "karpenter"
   version    = "v0.19.2"
+
+  set {
+    name = "tolerations"
+    value = [
+      {
+        key      = "CriticalAddonsOnly"
+        operator = "Exists"
+      },
+      {
+        key      = "eks.amazonaws.com/compute-type"
+        operator = "fargate"
+      }
+    ]
+  }
 
   set {
     name  = "settings.aws.clusterName"
