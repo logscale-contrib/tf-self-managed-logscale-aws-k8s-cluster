@@ -32,6 +32,8 @@ resource "helm_release" "alb-manager" {
 
 
   values = [<<EOF
+region: ${var.region}
+vpcId: ${var.vpc_id}
 topologySpreadConstraints:
   - maxSkew: 1
     topologyKey: topology.kubernetes.io/zone

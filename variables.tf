@@ -2,6 +2,10 @@ variable "uniqueName" {
   type        = string
   description = "(optional) describe your variable"
 }
+variable "region" {
+  type = string
+  description = "(optional) describe your variable"
+}
 variable "vpc_id" {
   type        = string
   description = "(optional) describe your variable"
