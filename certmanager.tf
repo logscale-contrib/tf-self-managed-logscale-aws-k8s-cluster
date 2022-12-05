@@ -43,7 +43,9 @@ prometheus:
   enabled: true
   servicemonitor:
     enabled: true
-    
+
+webhook:
+    securePort: 8443
 EOF 
   ]
 }
