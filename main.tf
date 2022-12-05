@@ -291,7 +291,7 @@ resource "helm_release" "karpenter" {
   repository = "oci://public.ecr.aws/karpenter"
   chart      = "karpenter"
   version    = "v0.19.2"
-
+  timeout    = 600
   values = [<<YAML
 tolerations:
   - key: CriticalAddonsOnly
