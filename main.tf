@@ -272,6 +272,19 @@ module "eks" {
 
 }
 
+locals {
+  karpenter_tolerations = [
+    {
+      key      = "CriticalAddonsOnly"
+      operator = "Exists"
+    },
+    {
+      key      = "eks.amazonaws.com/compute-type"
+      operator = "fargate"
+    }
+  ]
+}
+
 module "karpenter" {
   source = "terraform-aws-modules/eks/aws//modules/karpenter"
 
@@ -291,19 +304,15 @@ resource "helm_release" "karpenter" {
   chart      = "karpenter"
   version    = "v0.19.2"
 
-  set {
-    name = "tolerations"
-    value = [
-      {
-        key      = "CriticalAddonsOnly"
-        operator = "Exists"
-      },
-      {
-        key      = "eks.amazonaws.com/compute-type"
-        operator = "fargate"
-      }
-    ]
-  }
+  values = [<<YAML
+tolerations:
+  - key: CriticalAddonsOnly
+    operator: Exists
+  - key: "eks.amazonaws.com/compute-type"
+    operator: "Equal"
+    value: "fargate"
+YAML
+  ]
 
   set {
     name  = "settings.aws.clusterName"
