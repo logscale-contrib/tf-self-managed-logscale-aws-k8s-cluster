@@ -272,18 +272,6 @@ module "eks" {
 
 }
 
-locals {
-  karpenter_tolerations = [
-    {
-      key      = "CriticalAddonsOnly"
-      operator = "Exists"
-    },
-    {
-      key      = "eks.amazonaws.com/compute-type"
-      operator = "fargate"
-    }
-  ]
-}
 
 module "karpenter" {
   source = "terraform-aws-modules/eks/aws//modules/karpenter"
