@@ -177,7 +177,13 @@ module "eks" {
       ]
       subnet_ids = var.vpc_private_subnets
     }
-        
+    monitoring = {
+      name = "monitoring"
+      selectors = [
+        { namespace = "monitoring" }
+      ]
+      subnet_ids = var.vpc_private_subnets
+    }
     otel-operator = {
       name = "otel-operator"
       selectors = [
