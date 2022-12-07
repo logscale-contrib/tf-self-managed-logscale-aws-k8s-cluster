@@ -402,7 +402,7 @@ resource "kubectl_manifest" "karpenter_node_template" {
 
 module "vpc_cni_irsa" {
   source                = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks"
-  version               = "5.5.0"
+  version               = "5.9.1"
   role_name             = "${var.uniqueName}_vpc_cni"
   attach_vpc_cni_policy = true
 
