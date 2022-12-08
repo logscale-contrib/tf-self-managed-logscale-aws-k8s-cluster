@@ -50,11 +50,6 @@ resource "aws_kms_key" "eks" {
   enable_key_rotation     = true
 
 }
-resource "aws_kms_alias" "eks" {
-  name          = "alias/${var.uniqueName}/secrets"
-  target_key_id = aws_kms_key.eks.key_id
-}
-
 
 module "eks" {
   source                          = "terraform-aws-modules/eks/aws"
@@ -382,7 +377,7 @@ resource "kubectl_manifest" "karpenter_node_template" {
       name: default
     spec:
       subnetSelector:
-        karpenter.sh/discovery: ${module.eks.cluster_name}
+        karpenter.sh/discovery/private: ${module.eks.cluster_name}
       securityGroupSelector:
         karpenter.sh/discovery: ${module.eks.cluster_name}
       tags:
