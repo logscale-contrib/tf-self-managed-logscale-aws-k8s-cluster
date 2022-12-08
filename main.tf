@@ -67,12 +67,6 @@ module "eks" {
   cloudwatch_log_group_retention_in_days = 7
   cluster_enabled_log_types              = ["audit", "api", "authenticator", "controllerManager", "scheduler"]
 
-  cluster_encryption_config = [{
-    provider_key_arn = aws_kms_alias.eks.arn
-    resources        = ["secrets"]
-  }]
-
-
   cluster_addons = {
     # coredns = {
     #   resolve_conflicts = "OVERWRITE"
