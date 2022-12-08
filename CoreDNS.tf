@@ -100,6 +100,7 @@ resource "helm_release" "coredns" {
   # For EKS image repositories https://docs.aws.amazon.com/eks/latest/userguide/add-ons-images.html
   values = [
     <<-EOT
+      replicaCount: 2
       image:
         repository: 602401143452.dkr.ecr.eu-west-1.amazonaws.com/eks/coredns
         tag: ${data.aws_eks_addon_version.this["coredns"].version}

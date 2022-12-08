@@ -77,6 +77,9 @@ module "eks" {
   subnet_ids = var.vpc_private_subnets
   # cluster_ip_family          = "ipv6"
   # create_cni_ipv6_iam_policy = true
+  # Fargate profiles use the cluster primary security group so these are not utilized
+  create_cluster_security_group = false
+  create_node_security_group    = false
 
   eks_managed_node_group_defaults = {
     # We are using the IRSA created below for permissions
@@ -377,7 +380,7 @@ resource "kubectl_manifest" "karpenter_node_template" {
       name: default
     spec:
       subnetSelector:
-        Name: ${module.eks.cluster_name}-private-*
+        karpenter.sh/discovery: ${module.eks.cluster_name}
       securityGroupSelector:
         karpenter.sh/discovery: ${module.eks.cluster_name}
       tags:
