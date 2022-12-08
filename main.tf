@@ -307,7 +307,7 @@ resource "helm_release" "karpenter" {
   name       = "karpenter"
   repository = "oci://public.ecr.aws/karpenter"
   chart      = "karpenter"
-  version    = "v0.19.2"
+  version    = "v0.19.3"
   timeout    = 600
   values = [<<YAML
 tolerations:
@@ -377,7 +377,7 @@ resource "kubectl_manifest" "karpenter_node_template" {
       name: default
     spec:
       subnetSelector:
-        karpenter.sh/discovery/private: ${module.eks.cluster_name}
+        Name: ${module.eks.cluster_name}-private-*
       securityGroupSelector:
         karpenter.sh/discovery: ${module.eks.cluster_name}
       tags:
