@@ -13,7 +13,16 @@ output "eks_oidc_provider_arn" {
 output "eks_cluster_oidc_issuer_url" {
   value = module.eks.cluster_oidc_issuer_url
 }
+output "karpenter_queue_name" {
+  value =module.karpenter.queue_name
+}
+output "karpenter_instance_profile_name" {
+  value = module.karpenter.instance_profile_name
+}
 
+output "cluster_version" {
+  value = module.eks.cluster_version
+}
 # output "eks_karpenter_iam_role_name" {
 #   value = module.eks.eks_managed_node_groups["karpenter"].iam_role_name
 # }
