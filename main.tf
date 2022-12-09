@@ -290,3 +290,13 @@ module "eks" {
   create_cluster_primary_security_group_tags = false
 
 }
+
+module "karpenter" {
+  source       = "terraform-aws-modules/eks/aws//modules/karpenter"
+  version      = "19.0.4"
+  cluster_name = module.eks.cluster_name
+
+  irsa_oidc_provider_arn          = module.eks.oidc_provider_arn
+  irsa_namespace_service_accounts = ["karpenter:karpenter"]
+
+}
