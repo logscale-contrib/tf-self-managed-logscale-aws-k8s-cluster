@@ -78,8 +78,8 @@ module "eks" {
   # cluster_ip_family          = "ipv6"
   # create_cni_ipv6_iam_policy = true
   # Fargate profiles use the cluster primary security group so these are not utilized
-  create_cluster_security_group = false
-  create_node_security_group    = false
+  create_cluster_security_group = true
+  create_node_security_group    = true
 
   eks_managed_node_group_defaults = {
     # We are using the IRSA created below for permissions
