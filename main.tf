@@ -129,21 +129,18 @@ module "eks" {
       selectors = [
         { namespace = "alb-manager" }
       ]
-      subnet_ids = var.vpc_private_subnets
     }
     cert-manager = {
       name = "cert-manager"
       selectors = [
         { namespace = "cert-manager" }
       ]
-      subnet_ids = var.vpc_private_subnets
     }
     external-dns = {
       name = "external-dns"
       selectors = [
         { namespace = "external-dns" }
       ]
-      subnet_ids = var.vpc_private_subnets
     }
 
     kube_system = {
@@ -151,7 +148,6 @@ module "eks" {
       selectors = [
         { namespace = "kube-system" }
       ]
-      subnet_ids = var.vpc_private_subnets
     }
 
     karpenter = {
@@ -159,35 +155,30 @@ module "eks" {
       selectors = [
         { namespace = "karpenter" }
       ]
-      subnet_ids = var.vpc_private_subnets
     }
     logscale-operator = {
       name = "logscale-operator"
       selectors = [
         { namespace = "logscale-operator" }
       ]
-      subnet_ids = var.vpc_private_subnets
     }
     monitoring = {
       name = "monitoring"
       selectors = [
         { namespace = "monitoring" }
       ]
-      subnet_ids = var.vpc_private_subnets
     }
     otel-operator = {
       name = "otel-operator"
       selectors = [
         { namespace = "otel-operator" }
       ]
-      subnet_ids = var.vpc_private_subnets
     }
     strimzi-operator = {
       name = "strimzi-operator"
       selectors = [
         { namespace = "strimzi-operator" }
       ]
-      subnet_ids = var.vpc_private_subnets
     }
   }
 
@@ -216,69 +207,69 @@ module "eks" {
   #   }
   # }
   enable_irsa = true
-  cluster_security_group_additional_rules = {
-    egress_nodes_ephemeral_ports_tcp = {
-      description                = "To node 1025-65535"
-      protocol                   = "tcp"
-      from_port                  = 1025
-      to_port                    = 65535
-      type                       = "egress"
-      source_node_security_group = true
-    }
-  }
+  # cluster_security_group_additional_rules = {
+  #   egress_nodes_ephemeral_ports_tcp = {
+  #     description                = "To node 1025-65535"
+  #     protocol                   = "tcp"
+  #     from_port                  = 1025
+  #     to_port                    = 65535
+  #     type                       = "egress"
+  #     source_node_security_group = true
+  #   }
+  # }
 
-  node_security_group_additional_rules = {
-    # Control plane invoke Karpenter webhook
-    # ingress_karpenter_webhook_tcp = {
-    #   description                   = "Control plane invoke Karpenter webhook"
-    #   protocol                      = "tcp"
-    #   from_port                     = 8443
-    #   to_port                       = 8443
-    #   type                          = "ingress"
-    #   source_cluster_security_group = true
-    # }
-    # ingress_allow_access_from_control_plane_alb = {
-    #   type                          = "ingress"
-    #   protocol                      = "tcp"
-    #   from_port                     = 9443
-    #   to_port                       = 9443
-    #   source_cluster_security_group = true
-    #   description                   = "Allow access from control plane to webhook port of AWS load balancer controller"
-    # }
-    # ingress_allow_access_from_control_plane_otel = {
-    #   type                          = "ingress"
-    #   protocol                      = "tcp"
-    #   from_port                     = 443
-    #   to_port                       = 443
-    #   source_cluster_security_group = true
-    #   description                   = "Allow access from control plane to webhook port of AWS load balancer controller"
-    # }
-    ingress_allow_access_from_control_plane_tap = {
-      type                          = "ingress"
-      protocol                      = "tcp"
-      from_port                     = 8089
-      to_port                       = 8089
-      source_cluster_security_group = true
-      description                   = "Allow access from control plane to linkerd/viz/tap"
-    }
-    ingress_self_all = {
-      description = "Node to node all ports/protocols"
-      protocol    = "-1"
-      from_port   = 0
-      to_port     = 0
-      type        = "ingress"
-      self        = true
-    }
-    egress_all = {
-      description      = "Node all egress"
-      protocol         = "-1"
-      from_port        = 0
-      to_port          = 0
-      type             = "egress"
-      cidr_blocks      = ["0.0.0.0/0"]
-      ipv6_cidr_blocks = ["::/0"]
-    }
-  }
+  # node_security_group_additional_rules = {
+  #   # Control plane invoke Karpenter webhook
+  #   # ingress_karpenter_webhook_tcp = {
+  #   #   description                   = "Control plane invoke Karpenter webhook"
+  #   #   protocol                      = "tcp"
+  #   #   from_port                     = 8443
+  #   #   to_port                       = 8443
+  #   #   type                          = "ingress"
+  #   #   source_cluster_security_group = true
+  #   # }
+  #   # ingress_allow_access_from_control_plane_alb = {
+  #   #   type                          = "ingress"
+  #   #   protocol                      = "tcp"
+  #   #   from_port                     = 9443
+  #   #   to_port                       = 9443
+  #   #   source_cluster_security_group = true
+  #   #   description                   = "Allow access from control plane to webhook port of AWS load balancer controller"
+  #   # }
+  #   # ingress_allow_access_from_control_plane_otel = {
+  #   #   type                          = "ingress"
+  #   #   protocol                      = "tcp"
+  #   #   from_port                     = 443
+  #   #   to_port                       = 443
+  #   #   source_cluster_security_group = true
+  #   #   description                   = "Allow access from control plane to webhook port of AWS load balancer controller"
+  #   # }
+  #   ingress_allow_access_from_control_plane_tap = {
+  #     type                          = "ingress"
+  #     protocol                      = "tcp"
+  #     from_port                     = 8089
+  #     to_port                       = 8089
+  #     source_cluster_security_group = true
+  #     description                   = "Allow access from control plane to linkerd/viz/tap"
+  #   }
+  #   ingress_self_all = {
+  #     description = "Node to node all ports/protocols"
+  #     protocol    = "-1"
+  #     from_port   = 0
+  #     to_port     = 0
+  #     type        = "ingress"
+  #     self        = true
+  #   }
+  #   egress_all = {
+  #     description      = "Node all egress"
+  #     protocol         = "-1"
+  #     from_port        = 0
+  #     to_port          = 0
+  #     type             = "egress"
+  #     cidr_blocks      = ["0.0.0.0/0"]
+  #     ipv6_cidr_blocks = ["::/0"]
+  #   }
+  # }
 
   node_security_group_tags = {
     # NOTE - if creating multiple security groups with this module, only tag the
