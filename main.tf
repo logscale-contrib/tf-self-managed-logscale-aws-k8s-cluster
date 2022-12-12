@@ -143,12 +143,12 @@ module "eks" {
       ]
     }
 
-    kube_system = {
-      name = "kube-system"
-      selectors = [
-        { namespace = "kube-system" }
-      ]
-    }
+    # kube_system = {
+    #   name = "kube-system"
+    #   selectors = [
+    #     { namespace = "kube-system" }
+    #   ]
+    # }
 
     karpenter = {
       name = "karpenter"
