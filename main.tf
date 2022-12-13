@@ -168,18 +168,18 @@ module "eks" {
         { namespace = "monitoring" }
       ]
     }
-    otel-operator = {
-      name = "otel-operator"
-      selectors = [
-        { namespace = "otel-operator" }
-      ]
-    }
-    strimzi-operator = {
-      name = "strimzi-operator"
-      selectors = [
-        { namespace = "strimzi-operator" }
-      ]
-    }
+    # otel-operator = {
+    #   name = "otel-operator"
+    #   selectors = [
+    #     { namespace = "otel-operator" }
+    #   ]
+    # }
+    # strimzi-operator = {
+    #   name = "strimzi-operator"
+    #   selectors = [
+    #     { namespace = "strimzi-operator" }
+    #   ]
+    # }
   }
 
   # eks_managed_node_groups = {
