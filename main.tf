@@ -312,3 +312,20 @@ module "karpenter" {
 #   }
 
 # }
+
+
+resource "null_resource" "update_kubeconfig" {
+  triggers = {}
+  depends_on = [
+    module.eks
+  ]
+  provisioner "local-exec" {
+    interpreter = ["/bin/bash", "-c"]
+
+    # We are removing the deployment provided by the EKS service and replacing it through the self-managed CoreDNS Helm addon
+    # However, we are maintaing the existing kube-dns service and annotating it for Helm to assume control
+    command = <<-EOT
+      aws eks update-kubeconfig --region ${var.region} --name ${var.uniqueName}
+    EOT
+  }
+}
