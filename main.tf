@@ -124,24 +124,24 @@ module "eks" {
   ]
 
   fargate_profiles = {
-    alb-manager = {
-      name = "alb-manager"
-      selectors = [
-        { namespace = "alb-manager" }
-      ]
-    }
-    cert-manager = {
-      name = "cert-manager"
-      selectors = [
-        { namespace = "cert-manager" }
-      ]
-    }
-    external-dns = {
-      name = "external-dns"
-      selectors = [
-        { namespace = "external-dns" }
-      ]
-    }
+    # alb-manager = {
+    #   name = "alb-manager"
+    #   selectors = [
+    #     { namespace = "alb-manager" }
+    #   ]
+    # }
+    # cert-manager = {
+    #   name = "cert-manager"
+    #   selectors = [
+    #     { namespace = "cert-manager" }
+    #   ]
+    # }
+    # external-dns = {
+    #   name = "external-dns"
+    #   selectors = [
+    #     { namespace = "external-dns" }
+    #   ]
+    # }
 
     # kube_system = {
     #   name = "kube-system"
@@ -162,12 +162,12 @@ module "eks" {
         { namespace = "logscale-operator" }
       ]
     }
-    monitoring = {
-      name = "monitoring"
-      selectors = [
-        { namespace = "monitoring" }
-      ]
-    }
+    # monitoring = {
+    #   name = "monitoring"
+    #   selectors = [
+    #     { namespace = "monitoring" }
+    #   ]
+    # }
     # otel-operator = {
     #   name = "otel-operator"
     #   selectors = [
