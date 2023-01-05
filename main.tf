@@ -61,16 +61,16 @@ module "eks" {
   cloudwatch_log_group_retention_in_days = 7
   cluster_enabled_log_types              = ["audit", "api", "authenticator", "controllerManager", "scheduler"]
 
-  # cluster_addons = {
-  #   # coredns = {
-  #   #   resolve_conflicts = "OVERWRITE"
-  #   # }
-  #   kube-proxy = {}
-  #   vpc-cni = {
-  #     resolve_conflicts        = "OVERWRITE"
-  #     service_account_role_arn = module.vpc_cni_irsa.iam_role_arn
-  #   }
-  # }
+  cluster_addons = {
+    # coredns = {
+    #   resolve_conflicts = "OVERWRITE"
+    # }
+    kube-proxy = {}
+    # vpc-cni = {
+    #   resolve_conflicts        = "OVERWRITE"
+    #   service_account_role_arn = module.vpc_cni_irsa.iam_role_arn
+    # }
+  }
 
   vpc_id     = var.vpc_id
   subnet_ids = var.vpc_private_subnets
@@ -156,12 +156,12 @@ module "eks" {
         { namespace = "karpenter" }
       ]
     }
-    logscale-operator = {
-      name = "logscale-operator"
-      selectors = [
-        { namespace = "logscale-operator" }
-      ]
-    }
+    # logscale-operator = {
+    #   name = "logscale-operator"
+    #   selectors = [
+    #     { namespace = "logscale-operator" }
+    #   ]
+    # }
     # monitoring = {
     #   name = "monitoring"
     #   selectors = [
