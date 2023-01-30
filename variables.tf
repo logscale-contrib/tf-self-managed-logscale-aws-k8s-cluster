@@ -3,7 +3,7 @@ variable "uniqueName" {
   description = "(optional) describe your variable"
 }
 variable "region" {
-  type = string
+  type        = string
   description = "(optional) describe your variable"
 }
 variable "vpc_id" {
@@ -39,4 +39,15 @@ variable "eks_general_max_size" {
 variable "eks_general_desired_size" {
   type    = number
   default = 2
+}
+
+variable "cluster_ip_family" {
+  type        = string
+  default     = null
+  description = "(optional) describe your variable"
+}
+variable "create_cni_ipv6_iam_policy" {
+  type        = bool
+  default     = false
+  description = "(optional) describe your variable"
 }

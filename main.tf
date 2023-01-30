@@ -74,8 +74,8 @@ module "eks" {
 
   vpc_id     = var.vpc_id
   subnet_ids = var.vpc_private_subnets
-  # cluster_ip_family          = "ipv6"
-  # create_cni_ipv6_iam_policy = true
+  cluster_ip_family          = var.cluster_ip_family
+  create_cni_ipv6_iam_policy = var.create_cni_ipv6_iam_policy
   # Fargate profiles use the cluster primary security group so these are not utilized
   create_cluster_security_group = true
   create_node_security_group    = true
