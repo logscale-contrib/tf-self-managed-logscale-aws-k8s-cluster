@@ -62,14 +62,15 @@ module "eks" {
   cluster_enabled_log_types              = ["audit", "api", "authenticator", "controllerManager", "scheduler"]
 
   cluster_addons = {
-    # coredns = {
-    #   resolve_conflicts = "OVERWRITE"
-    # }
-    kube-proxy = {}
-    # vpc-cni = {
-    #   resolve_conflicts        = "OVERWRITE"
-    #   service_account_role_arn = module.vpc_cni_irsa.iam_role_arn
-    # }
+    coredns = {
+      most_recent = true
+    }
+    kube-proxy = {
+      most_recent = true
+    }
+    vpc-cni = {
+      most_recent = true
+    }
   }
 
   vpc_id                     = var.vpc_id
