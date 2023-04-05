@@ -56,7 +56,7 @@ module "eks" {
   cluster_endpoint_private_access = true
   cluster_endpoint_public_access  = true
   cluster_name                    = var.uniqueName
-  cluster_version                 = "1.24"
+  cluster_version                 = "1.25"
 
   cloudwatch_log_group_retention_in_days = 7
   cluster_enabled_log_types              = ["audit", "api", "authenticator", "controllerManager", "scheduler"]
