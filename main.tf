@@ -219,7 +219,7 @@ module "eks" {
   #   }
   # }
 
-  # node_security_group_additional_rules = {
+  node_security_group_additional_rules = {
   #   # Control plane invoke Karpenter webhook
   #   # ingress_karpenter_webhook_tcp = {
   #   #   description                   = "Control plane invoke Karpenter webhook"
@@ -245,14 +245,14 @@ module "eks" {
   #   #   source_cluster_security_group = true
   #   #   description                   = "Allow access from control plane to webhook port of AWS load balancer controller"
   #   # }
-  #   ingress_allow_access_from_control_plane_tap = {
-  #     type                          = "ingress"
-  #     protocol                      = "tcp"
-  #     from_port                     = 8089
-  #     to_port                       = 8089
-  #     source_cluster_security_group = true
-  #     description                   = "Allow access from control plane to linkerd/viz/tap"
-  #   }
+    ingress_allow_access_from_control_plane_tap = {
+      type                          = "ingress"
+      protocol                      = "tcp"
+      from_port                     = 8089
+      to_port                       = 8089
+      source_cluster_security_group = true
+      description                   = "Allow access from control plane to linkerd/viz/tap"
+    }
   #   ingress_self_all = {
   #     description = "Node to node all ports/protocols"
   #     protocol    = "-1"
@@ -270,7 +270,7 @@ module "eks" {
   #     cidr_blocks      = ["0.0.0.0/0"]
   #     ipv6_cidr_blocks = ["::/0"]
   #   }
-  # }
+  }
 
   node_security_group_tags = {
     # NOTE - if creating multiple security groups with this module, only tag the
