@@ -52,7 +52,7 @@ resource "aws_kms_key" "eks" {
 
 module "eks" {
   source                          = "terraform-aws-modules/eks/aws"
-  version                         = "19.6.0"
+  version                         = "19.21.0"
   cluster_endpoint_private_access = true
   cluster_endpoint_public_access  = true
   cluster_name                    = var.uniqueName
@@ -285,7 +285,7 @@ module "eks" {
 
 module "karpenter" {
   source       = "terraform-aws-modules/eks/aws//modules/karpenter"
-  version      = "19.6.0"
+  version      = "19.21.0"
   cluster_name = module.eks.cluster_name
 
   irsa_oidc_provider_arn          = module.eks.oidc_provider_arn
